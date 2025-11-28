@@ -6,38 +6,35 @@ use App\Http\Requests\AdminBranches\AddRequestBranchRequest;
 use App\Http\Requests\AdminBranches\EditProductDetailsRequest;
 use App\Services\ICategoryService;
 use App\Services\ICreateRequestService;
-use App\Services\Implementation\CategoryService;
-use App\Services\Implementation\CreateRequestService;
-use Illuminate\Http\Request;
 
 class CreateRequestController
 {
-    public function __construct(private ICategoryService $categoriesService ,private ICreateRequestService $createRequestService)
+    public function __construct(private ICategoryService $categoriesService, private ICreateRequestService $createRequestService)
     {
     }
 
     public function getCategories() //return All categories with id categories
     {
         $categories = $this->categoriesService->ShowAllServ();
-        return view('adminBranches.showAllCategories' , compact('categories'));
+        return view('adminBranches.showAllCategories', compact('categories'));
     }
 
     public function getProducts($cat_id)
     {
         $products = $this->categoriesService->getProductNameFromTableCategoryOfProductService($cat_id) ;
-        return view('adminBranches.showProducts' , compact('products'));
+        return view('adminBranches.showProducts', compact('products'));
     }
 
     public function getProductsWithBranch()
     {
         $productsDetails = $this->createRequestService->getProductFromBranchService() ;
-        return view('adminBranches.showOneProductDetails' , compact('productsDetails'));
+        return view('adminBranches.showOneProductDetails', compact('productsDetails'));
     }
 
-    public function getDetailsProducts($prod_id )
+    public function getDetailsProducts($prod_id)
     {
-        $branch_id = auth()->user()->branch_id ;
-        $productsDetails = $this->categoriesService->getDetailsProductFromTableStoreService($branch_id , $prod_id) ;
+        $branch_id       = auth()->user()->branch_id ;
+        $productsDetails = $this->categoriesService->getDetailsProductFromTableStoreService($branch_id, $prod_id) ;
         return view('adminBranches.showOneProductDetails', compact('productsDetails')) ;
     }
 

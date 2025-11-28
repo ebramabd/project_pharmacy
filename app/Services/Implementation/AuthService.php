@@ -19,30 +19,30 @@ class AuthService implements IAuthService
 
     public function loginServ(AuthDto $dto)
     {
-         $user = $this->authRepository->loginRepoWeb($dto->getUserName()) ;
+        $user = $this->authRepository->loginRepoWeb($dto->getUserName()) ;
         if (!$user) {
             throw ValidationException::withMessages([
-                'username' => 'not found user name'
+                'username' => 'not found user name',
             ]);
         }
-         $credentials = [
-            'user_name' => $dto->getUserName(),
-            'password' => $dto->getPassword()
+        $credentials = [
+           'user_name' => $dto->getUserName(),
+           'password'  => $dto->getPassword(),
         ];
 
         if (auth()->attempt($credentials)) {
             return auth()->user();
         }
         throw ValidationException::withMessages([
-            'password' => 'Incorrect password'
+            'password' => 'Incorrect password',
         ]);
     }
 
     public function register($request)
     {
-        $data = [] ;
+        $data              = [] ;
         $data['user_name'] = $request->user_name ;
-        $data['password'] =Hash::make($request->password) ;
+        $data['password']  = Hash::make($request->password) ;
         return $this->authRepository->register($data) ;
     }
 

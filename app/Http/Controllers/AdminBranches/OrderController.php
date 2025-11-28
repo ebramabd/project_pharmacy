@@ -3,13 +3,10 @@
 namespace App\Http\Controllers\AdminBranches;
 
 use App\Http\Requests\AdminBranches\OrderRequest;
-use App\Services\Implementation\OrderService;
 use App\Services\IOrderService;
-use Illuminate\Http\Request;
 
 class OrderController
 {
-
     public function __construct(private IOrderService $orderSer)
     {
     }
@@ -17,7 +14,7 @@ class OrderController
     public function getView()
     {
         $data =  $this->orderSer->getDataToShowService();
-        return view('adminBranches.order.make_order' , compact('data'));
+        return view('adminBranches.order.make_order', compact('data'));
     }
 
     public function store(OrderRequest $request)
@@ -25,7 +22,6 @@ class OrderController
         return $this->orderSer->storeService($request->getDto());
     }
 }
-
 
 //"options": [
 //    "13",

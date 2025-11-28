@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\Admin;
 
-use App\Dtos\BranchesOrdersReportsDto;
 use App\Dtos\ProductNumReportsDto;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,13 +23,13 @@ class ProductNumReportsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'branch'=>'required',
-            'product'=>'required',
-            'period'=>'required',
+            'branch'  => 'required',
+            'product' => 'required',
+            'period'  => 'required',
         ];
     }
 
-    public function getDto():ProductNumReportsDto
+    public function getDto(): ProductNumReportsDto
     {
         $dto = new ProductNumReportsDto();
         $dto->setBranch((int) $this->input('branch'))

@@ -21,7 +21,7 @@ class ReportsService implements IReportsService
 
     public function BranchesOrdersReportsService(BranchesOrdersReportsDto $dto): Collection
     {
-        $data = [];
+        $data           = [];
         $data['branch'] = $dto->getBranchId();
         $data['period'] = $dto->getPeriod();
         return $this->reportsRepo->BranchesOrdersReportsRepo($data);
@@ -34,20 +34,16 @@ class ReportsService implements IReportsService
 
     public function getNumProductService(ProductNumReportsDto $dto): string
     {
-        $data = [];
-        $data['branch'] = $dto->getBranch();
+        $data            = [];
+        $data['branch']  = $dto->getBranch();
         $data['product'] = $dto->getProduct();
-        $data['period'] = $dto->getPeriod();
+        $data['period']  = $dto->getPeriod();
         return $this->reportsRepo->getNumProductRepo($data);
     }
 
-    public function showAllOrderOfBranchService():Collection
+    public function showAllOrderOfBranchService(): Collection
     {
         return $this->reportsRepo->showAllOrderOfBranchRepo();
     }
 
-
 }
-
-
-

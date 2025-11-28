@@ -18,7 +18,7 @@ class BranchRequestService implements IBranchRequestService
         return $this->requestBranchRepo->getDataForAccept();
     }
 
-    public function acceptRequestBranch(BranchRequestDto $dto):void
+    public function acceptRequestBranch(BranchRequestDto $dto): void
     {
         $this->requestBranchRepo->acceptRequestBranch($dto) ;
     }

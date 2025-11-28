@@ -23,14 +23,14 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_name'=>'required|min:3|max:50',
-            'password'=>'required|min:3|max:50',
-            'branch_id'=>'required',
-            'type'=>'required|min:3|max:50',
+            'user_name' => 'required|min:3|max:50',
+            'password'  => 'required|min:3|max:50',
+            'branch_id' => 'required',
+            'type'      => 'required|min:3|max:50',
         ];
     }
 
-    public function getDto():UserDto
+    public function getDto(): UserDto
     {
         $dto = new UserDto() ;
         $dto->setUserName($this->input('user_name'))

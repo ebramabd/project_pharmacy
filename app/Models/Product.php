@@ -10,8 +10,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Product extends Model
 {
-    protected $table = 'products';
-    protected $fillable =[
+    protected $table    = 'products';
+    protected $fillable = [
         'prod_name' ,
     ];
     public $timestamps = false ;

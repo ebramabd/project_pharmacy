@@ -11,5 +11,5 @@ interface IBranchRequestRepo
 
     public function acceptRequestBranch(BranchRequestDto $dto): void;
 
-    public function changeQuantityOfProduct(int $prod_id ,int $branch_id ,int $quantity_of_prod): void;
+    public function changeQuantityOfProduct(int $prod_id, int $branch_id, int $quantity_of_prod): void;
 }

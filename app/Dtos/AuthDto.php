@@ -49,7 +49,7 @@ class AuthDto
     {
         return [
             'user_name' => $this->getUserName(),
-            'password' => $this->getPassword(),
+            'password'  => $this->getPassword(),
         ];
     }
 }

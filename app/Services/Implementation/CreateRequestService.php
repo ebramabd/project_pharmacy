@@ -5,7 +5,6 @@ namespace App\Services\Implementation;
 use App\Dtos\AddRequestBranchDto;
 use App\Dtos\EditProductDetailsDto;
 use App\Repositories\ICreateRequestRepo;
-use App\Repositories\Implementation\CreateRequestRepo;
 use App\Services\ICreateRequestService;
 use Illuminate\Support\Collection;
 
@@ -17,20 +16,20 @@ class CreateRequestService implements ICreateRequestService
 
     public function addRequestSer(AddRequestBranchDto $dto): void
     {
-        $data = [];
-        $data['branch_id'] = $dto->getBranchId() ;
-        $data['prod_id'] = $dto->getProdId() ;
+        $data                     = [];
+        $data['branch_id']        = $dto->getBranchId() ;
+        $data['prod_id']          = $dto->getProdId() ;
         $data['quantity_of_prod'] = $dto->getQuantityOfProd() ;
         $this->createRequestRepo->addRequestRepo($data);
     }
 
     public function updateStoreSer(EditProductDetailsDto $dto): void
     {
-        $data = [];
+        $data                 = [];
         $data['max_quantity'] = $dto->getMaxQuantity();
         $data['min_quantity'] = $dto->getMinQuantity();
-        $data['price'] = $dto->getPrice();
-        $data['prod_id'] = $dto->getProdId();
+        $data['price']        = $dto->getPrice();
+        $data['prod_id']      = $dto->getProdId();
         $this->createRequestRepo->updateStoreRepo($data) ;
     }
 

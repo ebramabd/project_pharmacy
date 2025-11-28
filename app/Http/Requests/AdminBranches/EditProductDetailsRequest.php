@@ -23,14 +23,14 @@ class EditProductDetailsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'max_quantity'=>'required',
-            'min_quantity'=>'required',
-            'price'=>'required',
-            'prod_id'=>'required',
+            'max_quantity' => 'required',
+            'min_quantity' => 'required',
+            'price'        => 'required',
+            'prod_id'      => 'required',
         ];
     }
 
-    public function getDto():EditProductDetailsDto
+    public function getDto(): EditProductDetailsDto
     {
         $dto = new EditProductDetailsDto() ;
         $dto->setMaxQuantity((int) $this->input('max_quantity'))
@@ -41,4 +41,3 @@ class EditProductDetailsRequest extends FormRequest
     }
 
 }
-

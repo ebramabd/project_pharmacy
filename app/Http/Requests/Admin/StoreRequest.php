@@ -23,11 +23,11 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'branch_id'=>'required|integer|',
+            'branch_id' => 'required|integer|',
         ];
     }
 
-    public function getDto() :StoreDto
+    public function getDto(): StoreDto
     {
         $dto = new StoreDto() ;
         $dto->setBranchId($this->input('branch_id'));

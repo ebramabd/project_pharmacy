@@ -2,15 +2,14 @@
 
 namespace App\Services;
 
-use App\Dtos\ProductDto;
 use App\Dtos\StoreDto;
 use App\Models\Store;
 use Illuminate\Support\Collection;
 
 interface IStoreService
 {
-//    public function ShowAllServ() ; //get All data
-    public function saveServ(StoreDto $dto,int $id = null): void ; // save and update of data
+    //    public function ShowAllServ() ; //get All data
+    public function saveServ(StoreDto $dto, int $id = null): void ; // save and update of data
     public function getOneServ(int $id): Store ;
     public function getNameProductBranchService(): Collection ;
 }

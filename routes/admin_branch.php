@@ -5,7 +5,6 @@ use App\Http\Controllers\AdminBranches\CreateRequestController;
 use App\Http\Controllers\AdminBranches\OrderController;
 use Illuminate\Support\Facades\Route;
 
-
 Route::group(['middleware' => ['auth']], function () {
     Route::group(['prefix' => 'request'], function () {
         Route::get('get-categories', [CreateRequestController::class, 'getCategories'])->name('getCategories');

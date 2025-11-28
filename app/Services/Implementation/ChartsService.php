@@ -7,7 +7,6 @@ use App\Services\IChartsService;
 
 class ChartsService implements IChartsService
 {
-
     public function __construct(private IChartsRepo $chartsRepo)
     {
     }

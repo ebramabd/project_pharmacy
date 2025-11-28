@@ -9,9 +9,8 @@ use Illuminate\Database\Eloquent\Collection;
 interface IBranchService
 {
     public function getAllBranches(): Collection;
-    public function branchSave(BranchDto $dto ,int $id = null): Branch ;
+    public function branchSave(BranchDto $dto, int $id = null): Branch ;
     public function getOneBranch(int $id = null): Branch;
     public function branchDelete(int $id): void;
-
 
 }

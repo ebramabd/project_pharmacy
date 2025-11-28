@@ -23,13 +23,13 @@ class AddRequestBranchRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'branch_id'=>'required',
-            'prod_id'=>'required',
-            'quantity_of_prod'=>'required',
+            'branch_id'        => 'required',
+            'prod_id'          => 'required',
+            'quantity_of_prod' => 'required',
         ];
     }
 
-    public function getDto():AddRequestBranchDto
+    public function getDto(): AddRequestBranchDto
     {
         $dto = new AddRequestBranchDto() ;
         $dto->setBranchId((int) $this->input('branch_id'))

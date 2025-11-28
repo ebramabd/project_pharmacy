@@ -3,8 +3,6 @@
 namespace App\Services;
 
 use App\Dtos\AuthDto;
-use App\Dtos\ProductDto;
-use App\Dtos\StoreDto;
 
 interface IAuthService
 {

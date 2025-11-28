@@ -23,12 +23,12 @@ class BranchesOrdersReportsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'branch_id'=>'required',
-            'period'=>'required',
+            'branch_id' => 'required',
+            'period'    => 'required',
         ];
     }
 
-    public function getDto():BranchesOrdersReportsDto
+    public function getDto(): BranchesOrdersReportsDto
     {
         $dto = new BranchesOrdersReportsDto();
         $dto->setBranchId((int) $this->input('branch_id'))
@@ -37,4 +37,3 @@ class BranchesOrdersReportsRequest extends FormRequest
     }
 
 }
-

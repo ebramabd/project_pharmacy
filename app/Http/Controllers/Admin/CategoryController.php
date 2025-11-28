@@ -3,13 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Admin\CategoryRequest;
-use App\Repositories\Implementation\CategoryRepo;
 use App\Services\ICategoryService;
-use App\Services\Implementation\CategoryService;
 
 class CategoryController
 {
-
     public function __construct(private ICategoryService $categoryService)
     {
     }
@@ -17,17 +14,17 @@ class CategoryController
     public function showAllCategory()
     {
         $categories = $this->categoryService->allCategoryPage();
-        return view('admin.category.show' , compact('categories')) ;
+        return view('admin.category.show', compact('categories')) ;
     }
 
-    public function save( CategoryRequest $request ,int $id = null)
+    public function save(CategoryRequest $request, int $id = null)
     {
-        $statue = '' ;
-        $category = $this->categoryService->categorySave($request->getDto() , $id ) ;
-        if ($category == false){
+        $statue   = '' ;
+        $category = $this->categoryService->categorySave($request->getDto(), $id) ;
+        if ($category == false) {
             return redirect()->route('branch.show')->with(['error' => 'this branch exist']);
         }
-        if ($id != null){
+        if ($id != null) {
             $statue = 'updated' ;
             return redirect()->route('category.show')->with(['success' => 'this category '. $statue.' successful']);
         }
@@ -43,8 +40,8 @@ class CategoryController
 
     public function categorySavePage($id = null)
     {
-        $dataWhere = ['id' => $id]  ;
+        $dataWhere  = ['id' => $id]  ;
         $categories = $this->categoryService->getOneCategory($dataWhere) ;
-        return view('admin.category.create' , compact('categories')) ;
+        return view('admin.category.create', compact('categories')) ;
     }
 }

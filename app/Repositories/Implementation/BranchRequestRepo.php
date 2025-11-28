@@ -13,16 +13,30 @@ class BranchRequestRepo implements IBranchRequestRepo
 {
     use Crud ;
 
+    /**
+     * Get all product requests waiting for acceptance.
+     *
+     * @return \Illuminate\Support\Collection<int, object{
+     *     id: int,
+     *     branch_id: int,
+     *     prod_id: int,
+     *     quantity_of_prod: int,
+     *     prod_name: string,
+     *     branch_name: string
+     * }>
+     */
+
     public function getDataForAccept(): Collection
     {
         return DB::table('requests_of_product')
-            ->join('products' , 'requests_of_product.prod_id' ,'=' , 'products.id')
-            ->join('branches' , 'requests_of_product.branch_id' ,'=' , 'branches.id')
-            ->where('requests_of_product.accept_or_not' , 'not')
+            ->join('products', 'requests_of_product.prod_id', '=', 'products.id')
+            ->join('branches', 'requests_of_product.branch_id', '=', 'branches.id')
+            ->where('requests_of_product.accept_or_not', 'not')
             ->get([
                 'requests_of_product.id' ,
                 'requests_of_product.branch_id',
                 'requests_of_product.prod_id',
+                'requests_of_product.accept_or_not',
                 'requests_of_product.quantity_of_prod',
                 'products.prod_name',
                 'branches.branch_name',
@@ -32,15 +46,15 @@ class BranchRequestRepo implements IBranchRequestRepo
     public function acceptRequestBranch($dto): void
     {
         $tableRequests = new Requests_of_product() ;
-        $tableRequests->where('id' , $dto->getRequestId())->update(['accept_or_not'=>'accepted']);
-        $this->changeQuantityOfProduct($dto->getProdId() , $dto->getBranchId() , $dto->getQuantityOfProduct());
+        $tableRequests->where('id', $dto->getRequestId())->update(['accept_or_not' => 'accepted']);
+        $this->changeQuantityOfProduct($dto->getProdId(), $dto->getBranchId(), $dto->getQuantityOfProduct());
     }
 
-    public function changeQuantityOfProduct(int $prod_id ,int $branch_id ,int $quantity_of_prod): void
+    public function changeQuantityOfProduct(int $prod_id, int $branch_id, int $quantity_of_prod): void
     {
         $data = [
-            'prod_id'=>$prod_id ,
-            'branch_id'=>$branch_id
+            'prod_id'   => $prod_id ,
+            'branch_id' => $branch_id,
         ];
         $tableStore = new Store();
         $tableStore->where($data)->increment('quantity_item', $quantity_of_prod) ;

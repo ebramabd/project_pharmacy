@@ -10,7 +10,7 @@ interface IProductService
 {
     public function ShowAllServ(): Collection ;
     public function getShowAllData(): array;
-    public function saveServ(ProductDto $dto,int $id = null): Product;
+    public function saveServ(ProductDto $dto, int $id = null): Product;
     public function deleteServ(int $id): void;
-    public function getOneSer(array $data=[]):Product ;
+    public function getOneSer(array $data = []): Product ;
 }

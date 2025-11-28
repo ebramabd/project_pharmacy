@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\AdminBranches;
 
-use App\Dtos\EditProductDetailsDto;
 use App\Dtos\OrderDto;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,12 +23,12 @@ class OrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'options'=>'required',
-            'quantity'=>'required',
+            'options'  => 'required',
+            'quantity' => 'required',
         ];
     }
 
-    public function getDto():OrderDto
+    public function getDto(): OrderDto
     {
         $dto = new OrderDto() ;
         $dto->setOptions((array) $this->input('options'))
@@ -38,4 +37,3 @@ class OrderRequest extends FormRequest
     }
 
 }
-

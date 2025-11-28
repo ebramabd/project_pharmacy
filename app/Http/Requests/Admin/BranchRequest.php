@@ -23,7 +23,7 @@ class BranchRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'branch_name'=>'required|min:3|max:50',
+            'branch_name' => 'required|min:3|max:50',
         ];
     }
 
@@ -33,6 +33,5 @@ class BranchRequest extends FormRequest
         $dto->setBranchName($this->input('branch_name'));
         return $dto;
     }
-
 
 }

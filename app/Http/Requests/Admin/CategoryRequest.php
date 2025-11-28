@@ -23,11 +23,11 @@ class CategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'cat_name'=>'required|min:3|max:50',
+            'cat_name' => 'required|min:3|max:50',
         ];
     }
 
-    public function getDto():CategoryDto
+    public function getDto(): CategoryDto
     {
         $dto = new CategoryDto() ;
         $dto->setCategoryName($this->input('cat_name')) ;

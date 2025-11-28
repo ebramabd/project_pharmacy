@@ -23,14 +23,14 @@ class ClientOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'userName'=>'required',
-            'branchName'=>'required',
-            'productName'=>'required',
-            'quantityOfProd'=>'required',
+            'userName'       => 'required',
+            'branchName'     => 'required',
+            'productName'    => 'required',
+            'quantityOfProd' => 'required',
         ];
     }
 
-    public function getDto():ClientOrderDto
+    public function getDto(): ClientOrderDto
     {
         $dto = new ClientOrderDto() ;
         $dto->setUserName($this->input('userName'))

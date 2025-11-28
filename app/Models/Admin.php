@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 /**
  * @property int $id
@@ -15,9 +15,10 @@ use Illuminate\Notifications\Notifiable;
  */
 class Admin extends Model
 {
-    use HasApiTokens, Notifiable ;
-    protected $table = 'users';
-    protected $fillable =[
+    use HasApiTokens;
+    use Notifiable ;
+    protected $table    = 'users';
+    protected $fillable = [
         'user_name' ,
         'password',
         'type',

@@ -77,5 +77,4 @@ class UserDto
         return $this ;
     }
 
-
 }

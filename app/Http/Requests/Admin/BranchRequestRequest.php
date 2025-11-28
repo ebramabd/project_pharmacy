@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\Admin;
 
-use App\Dtos\BranchDto;
 use App\Dtos\BranchRequestDto;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,10 +23,10 @@ class BranchRequestRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id_request'=>'required',
-            'prod_id'=>'required',
-            'branch_id'=>'required',
-            'quantity_of_prod'=>'required',
+            'id_request'       => 'required',
+            'prod_id'          => 'required',
+            'branch_id'        => 'required',
+            'quantity_of_prod' => 'required',
         ];
     }
 
@@ -41,4 +40,3 @@ class BranchRequestRequest extends FormRequest
         return $dto;
     }
 }
-

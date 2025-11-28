@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Providers;
+
 use App\Models\Admin;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
@@ -23,9 +24,9 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->registerPolicies();
-        Gate::define('show_products' , function (Admin $admin){
-           $hasPermission = $admin->where('type' , 'admin_panel')->first() ;
-           return $hasPermission ? true : false ;
+        Gate::define('show_products', function (Admin $admin) {
+            $hasPermission = $admin->where('type', 'admin_panel')->first() ;
+            return $hasPermission ? true : false ;
         });
     }
 }

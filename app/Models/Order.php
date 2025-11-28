@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+
 /**
  * @property int $id
  * @property int $admin_id
@@ -13,8 +14,8 @@ use Illuminate\Database\Eloquent\Model;
 */
 class Order extends Model
 {
-    protected $table = 'order';
-    protected $fillable =[
+    protected $table    = 'order';
+    protected $fillable = [
         'admin_id' ,
         'branch_id' ,
         'price' ,

@@ -3,22 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Admin\AuthRequest;
-use App\Http\Requests\Admin\UserRequest;
 use App\Http\Requests\Client\ClientOrderRequest;
 use App\Services\Implementation\AuthService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
-
     protected AuthService $authService;
     public function __construct(AuthService $authService)
     {
         $this->authService = $authService;
     }
-
 
     public function loginView()
     {
@@ -27,10 +23,10 @@ class AuthController extends Controller
 
     public function loginWeb(AuthRequest $request)
     {
-         $user = $this->authService->loginServ($request->getDto()) ;
+        $user = $this->authService->loginServ($request->getDto()) ;
         if (!$user) {
             throw ValidationException::withMessages([
-                'user' => 'not found user '
+                'user' => 'not found user ',
             ]);
         }
         return redirect()->route('afterLogin');

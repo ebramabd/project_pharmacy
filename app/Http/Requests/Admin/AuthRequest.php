@@ -23,12 +23,12 @@ class AuthRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'username'=>'required|min:3|max:50',
-            'password'=>'required|min:3|max:50',
+            'username' => 'required|min:3|max:50',
+            'password' => 'required|min:3|max:50',
         ];
     }
 
-    public function getDto():AuthDto
+    public function getDto(): AuthDto
     {
         $dto = new AuthDto() ;
         $dto->setUserName($this->input('username')) ;

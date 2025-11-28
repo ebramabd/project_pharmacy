@@ -22,12 +22,12 @@ class ProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'prod_name'=>'required|min:3|max:50',
-            'cat_id'=>'required',
+            'prod_name' => 'required|min:3|max:50',
+            'cat_id'    => 'required',
         ];
     }
 
-    public function getDto() : ProductDto
+    public function getDto(): ProductDto
     {
         $dto = new ProductDto() ;
         $dto

@@ -12,7 +12,6 @@ interface IReportsService
     public function BranchesOrdersReportsService(BranchesOrdersReportsDto $dto): Collection;
     public function showOrderDetailsService(int $id): Collection;
     public function getNumProductService(ProductNumReportsDto $dto): string;
-    public function showAllOrderOfBranchService():Collection;
+    public function showAllOrderOfBranchService(): Collection;
 
 }
-

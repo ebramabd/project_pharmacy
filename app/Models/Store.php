@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+
 /**
  * @property int $id
  * @property int $prod_id
@@ -14,8 +15,8 @@ use Illuminate\Database\Eloquent\Model;
 */
 class Store extends Model
 {
-    protected $table = 'stores';
-    protected $fillable =[
+    protected $table    = 'stores';
+    protected $fillable = [
         'prod_id' ,
         'branch_id',
         'max_quantity',

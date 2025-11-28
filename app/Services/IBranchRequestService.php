@@ -8,5 +8,5 @@ use Illuminate\Support\Collection;
 interface IBranchRequestService
 {
     public function getDataForAccept(): Collection;
-    public function acceptRequestBranch(BranchRequestDto $dto):void;
+    public function acceptRequestBranch(BranchRequestDto $dto): void;
 }

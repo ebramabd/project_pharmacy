@@ -1,17 +1,16 @@
 <?php
 
 namespace App\Trait;
-use Illuminate\Support\Facades\Schema;
 
 trait Crud
 {
-    public function save( $model ,  $data ,  $id = null )
+    public function save($model, $data, $id = null)
     {
-        if ($id != null){
+        if ($id != null) {
             $dataWhere = [
-                'id' => $id
-            ] ;
-            $object = $this->getOneObject($model , $dataWhere) ;
+                'id' => $id,
+            ];
+            $object = $this->getOneObject($model, $dataWhere) ;
             $object->update($data) ;
             return  $object ;
         }
@@ -26,21 +25,21 @@ trait Crud
         return $model->get();
     }
 
-    public function getOneObject($model , $data = [])
+    public function getOneObject($model, $data = [])
     {
         $object = $model->where($data)->first();
-        if (!$object){
+        if (!$object) {
             return false ;
         }
         return $object ;
     }
 
-    public function delete($model , $id)
+    public function delete($model, $id)
     {
         $getWhere = [
-            'id' =>$id
+            'id' => $id,
         ];
-        $object = $this->getOneObject($model , $getWhere) ;
+        $object = $this->getOneObject($model, $getWhere) ;
         if ($object == false) {
             return false ;
         }
@@ -48,7 +47,5 @@ trait Crud
         return true ;
 
     }
-
-
 
 }
