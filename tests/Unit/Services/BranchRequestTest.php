@@ -34,6 +34,7 @@ class BranchRequestTest extends TestCase
 
     $after = $service->getDataForAccept()->first();
     $this->assertEquals('accepted', $after->accept_or_not);
+
 }
 
 
