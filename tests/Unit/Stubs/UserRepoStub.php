@@ -11,6 +11,7 @@ use PHPUnit\Framework\TestCase;
 class UserRepoStub extends TestCase implements IUserRepo
 {
     private $userData = [];
+
     public function __construct()
     {
         $user = new Admin();
@@ -23,9 +24,6 @@ class UserRepoStub extends TestCase implements IUserRepo
 
         $this->userData[1] = $user;
         $this->userData[2] = $user2;
-
-
-        $branch = new Branch();
     }
 
     public function saveRepo(array $data, int $id = null): Admin
@@ -59,7 +57,7 @@ class UserRepoStub extends TestCase implements IUserRepo
 
     public function getBranchNameRepo(): array
     {
-           return array_map(function ($user) {
+        return array_map(function ($user) {
             return [
                 'user_name' => $user->user_name,
                 'branch_id' => $user->branch_id,

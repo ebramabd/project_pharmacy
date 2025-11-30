@@ -4,6 +4,7 @@ namespace App\Services\Implementation;
 
 use App\Dtos\CategoryDto;
 use App\Models\Category;
+use App\Repositories\ICategoryRepo;
 use App\Repositories\Implementation\CategoryRepo;
 use App\Services\ICategoryService;
 use Illuminate\Support\Collection;
@@ -12,7 +13,7 @@ use Illuminate\Support\Collection;
 
 class CategoryService implements ICategoryService
 {
-    public function __construct(private CategoryRepo $categoryRepo)
+    public function __construct(private ICategoryRepo $categoryRepo)
     {
     }
 

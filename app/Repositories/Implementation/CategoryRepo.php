@@ -58,6 +58,6 @@ class CategoryRepo implements ICategoryRepo
             ->join('products', 'stores.prod_id', '=', 'products.id')
             ->where('stores.branch_id', $branch_id)
             ->where('stores.prod_id', $prod_id)
-            ->get();
+            ->get(['products.id' ,'products.prod_name', 'stores.branch_id']);
     }
 }

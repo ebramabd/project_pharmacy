@@ -6,6 +6,7 @@ class ProductDto
 {
     private string $prodName;
     private int $catId;
+    private int $prod_id_for_test;
 
     public function getProdName(): string
     {
@@ -28,4 +29,6 @@ class ProductDto
         $this->catId = $catId;
         return $this;
     }
+
+
 }

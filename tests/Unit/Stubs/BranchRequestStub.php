@@ -62,11 +62,9 @@ class BranchRequestStub extends TestCase implements IBranchRequestRepo
     public function acceptRequestBranch(BranchRequestDto $dto): void
     {
         $this->requestsOfProduct = $this->requestsOfProduct->map(function ($item) use ($dto) {
-
             $item->accept_or_not = 'accepted';
-             return $item;
-         });
-
+            return $item;
+        });
     }
 
     public function changeQuantityOfProduct(int $prod_id, int $branch_id, int $quantity_of_prod): void
