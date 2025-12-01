@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Serial Test</title>
+</head>
+<body>
+    <button id="connect">Connect Serial</button>
+    <button id="send">Send Hello</button>
+    <pre id="output"></pre>
+
+    <script>
+        let port;
+        let reader;
+        const output = document.getElementById('output');
+
+        document.getElementById('connect').addEventListener('click', async () => {
+            try {
+                // Request a serial port from the user
+                port = await navigator.serial.requestPort();
+                await port.open({ baudRate: 9600 });
+
+                output.textContent += 'Serial port opened\n';
+
+                // Start reading
+                reader = port.readable.getReader();
+                while (true) {
+                    const { value, done } = await reader.read();
+                    if (done) {
+                        break;
+                    }
+                    output.textContent += new TextDecoder().decode(value);
+                }
+            } catch (err) {
+                output.textContent += 'Error: ' + err + '\n';
+            }
+        });
+
+        document.getElementById('send').addEventListener('click', async () => {
+            if (port && port.writable) {
+                const writer = port.writable.getWriter();
+                const data = new TextEncoder().encode("Hello from browser\n");
+                await writer.write(data);
+                writer.releaseLock();
+            }
+        });
+    </script>
+</body>
+</html>

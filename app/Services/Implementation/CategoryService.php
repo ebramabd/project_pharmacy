@@ -27,11 +27,11 @@ class CategoryService implements ICategoryService
         $data             = [];
         $data['cat_name'] = $dto->getCategoryName() ;
         if ($id == null) {
-            $dataWhere   = ['cat_name' => $dto->getCategoryName() ];
-            $getCategory = $this->getOneSer($dataWhere) ;
-            if (!empty($getCategory)) {
-                return new Category();
-            }
+//            $dataWhere   = ['cat_name' => $dto->getCategoryName() ];
+//            $getCategory = $this->categoryRepo->getOneRepo($dataWhere);
+//            if (!empty($getCategory)) {
+//                return new Category();
+//            }
             return $this->categoryRepo->saveRepo($data) ;
         }
         return $this->categoryRepo->saveRepo($data, $id) ;

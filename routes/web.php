@@ -11,3 +11,7 @@ Route::group([ 'prefix' => '/'  ], function () {
     Route::get('/', [AuthController::class , 'loginView'])   ->name('login');
     Route::post('login', [AuthController::class , 'loginWeb'])       ->name('login.process');
 });
+
+
+
+Route::get('/serial-test', [\App\Http\Controllers\SerialPortController::class, 'test']);

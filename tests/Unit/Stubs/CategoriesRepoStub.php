@@ -9,7 +9,7 @@ use App\Repositories\ICategoryRepo;
 use Illuminate\Support\Collection;
 use PHPUnit\Framework\TestCase;
 
-class CategoriesStub extends TestCase implements ICategoryRepo
+class CategoriesRepoStub implements ICategoryRepo
 {
     private Collection $catData;
 
@@ -18,11 +18,11 @@ class CategoriesStub extends TestCase implements ICategoryRepo
         $this->catData = collect([
             (object)[
                 'id' => 1,
-                'name' => "category1"
+                'cat_name' => "category1"
             ],
             (object)[
                 'id' => 2,
-                'name' => "category1"
+                'cat_name' => "category2"
             ],
 
         ]);
@@ -54,26 +54,26 @@ class CategoriesStub extends TestCase implements ICategoryRepo
     public function saveRepo(array $data, int $id = null): Category
     {
         if ($id) {
-            $this->catData->map(function ($item) use ($data, $id) {
-                if ($item->id === $id) {
-                    $item->name = $data['name'];
-                }
-            });
+             $item = $this->catData->firstWhere('id', $id);
+
+        if ($item) {
+            $item->cat_name = $data['cat_name'];
+        }
 
             return new Category([
                 'id' => $id,
-                'name' => $data['name'],
+                'cat_name' => $data['cat_name'],
             ]);
         }
         $newId = $this->catData->max('id') + 1;
         $newCategory = (object)[
             'id' => $newId,
-            'name' => $data['name'],
+            'cat_name' => $data['cat_name'],
         ];
         $this->catData->push($newCategory);
         return new Category([
             'id' => $newId,
-            'name' => $data['name'],
+            'cat_name' => $data['cat_name'],
         ]);
     }
 
@@ -87,10 +87,10 @@ class CategoriesStub extends TestCase implements ICategoryRepo
      */
     public function getOneRepo(array $data = []): Category
     {
-        $item = $this->catData->firstWhere($data);
+        $item = $this->catData->firstWhere('id', 1);
         return new Category([
             'id'   => $item->id,
-            'name' => $item->name,
+            'cat_name' => $item->cat_name,
         ]);
     }
 
@@ -99,7 +99,7 @@ class CategoriesStub extends TestCase implements ICategoryRepo
      */
     public function deleteRepo(int $id): void
     {
-        $this->catData->reject(fn($item) => $item->id === $id);
+        $this->catData = $this->catData->reject(fn($item) => $item->id === $id)->values();
     }
 
     /**
