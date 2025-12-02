@@ -17,11 +17,8 @@ class BranchRepo implements IBranchRepo
         return $this->getAllObject(new Branch());
     }
 
-    public function branchSave(BranchDto $dto, int $id = null): Branch
+    public function branchSave(array $data = [], int $id = null): Branch
     {
-        $data = [
-            'branch_name' => $dto->getBranchName(),
-        ];
         return $this->save(new Branch(), $data, $id);
     }
 

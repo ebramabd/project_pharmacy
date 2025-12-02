@@ -6,7 +6,7 @@ use App\Dtos\BranchDto;
 use App\Models\Branch;
 use App\Repositories\IBranchRepo;
 use App\Services\IBranchService;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 
 class BranchService implements IBranchService
 {
@@ -21,16 +21,12 @@ class BranchService implements IBranchService
 
     public function branchSave(BranchDto $dto, int $id = null): Branch
     {
-        $data                = [];
-        $data['branch_name'] = $dto->getBranchName() ;
+        $data = [];
+        $data['branch_name'] = $dto->getBranchName();
         if ($id == null) {
-            $branchName = [
-                'branch_name' => $dto->getBranchName(),
-            ] ;
-            return $this->branchRepo->branchSave($dto, $id) ;
+            return $this->branchRepo->branchSave($data, $id);
         }
-        $branch = $this->branchRepo->branchSave($dto, $id) ;
-        return $branch ;
+        return $this->branchRepo->branchSave($data, $id);
     }
 
     public function getOneBranch(int $id = null): Branch

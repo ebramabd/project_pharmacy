@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Dtos\BranchDto;
 use App\Models\Branch;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 
 interface IBranchService
 {

@@ -54,11 +54,11 @@ class CategoriesRepoStub implements ICategoryRepo
     public function saveRepo(array $data, int $id = null): Category
     {
         if ($id) {
-             $item = $this->catData->firstWhere('id', $id);
+            $item = $this->catData->firstWhere('id', $id);
 
-        if ($item) {
-            $item->cat_name = $data['cat_name'];
-        }
+            if ($item) {
+                $item->cat_name = $data['cat_name'];
+            }
 
             return new Category([
                 'id' => $id,
