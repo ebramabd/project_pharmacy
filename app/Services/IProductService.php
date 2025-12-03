@@ -4,7 +4,8 @@ namespace App\Services;
 
 use App\Dtos\ProductDto;
 use App\Models\Product;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
+
 
 interface IProductService
 {

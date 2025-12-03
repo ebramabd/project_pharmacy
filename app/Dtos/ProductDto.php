@@ -6,7 +6,18 @@ class ProductDto
 {
     private string $prodName;
     private int $catId;
-    private int $prod_id_for_test;
+    private int $prod_id;
+
+    public function getProductId(): int
+    {
+        return $this->prod_id;
+    }
+
+    public function setProductId($prodId): self
+    {
+        $this->prod_id = $prodId;
+        return $this;
+    }
 
     public function getProdName(): string
     {

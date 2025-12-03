@@ -6,7 +6,7 @@ use App\Models\Category_of_product;
 use App\Models\Product;
 use App\Repositories\IProductRepo;
 use App\Trait\Crud;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 
 class ProductRepo implements IProductRepo
 {

@@ -8,7 +8,7 @@ use App\Models\Product;
 use App\Repositories\ICategoryRepo;
 use App\Repositories\IProductRepo;
 use App\Services\IProductService;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 
 class ProductService implements IProductService
 {
