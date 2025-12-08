@@ -10,6 +10,6 @@ interface IStoreService
 {
     //    public function ShowAllServ() ; //get All data
     public function saveServ(StoreDto $dto, int $id = null): void ; // save and update of data
-    public function getOneServ(int $id): Store ;
+    public function getOneServ(array $data = []): Store ;
     public function getNameProductBranchService(): Collection ;
 }
