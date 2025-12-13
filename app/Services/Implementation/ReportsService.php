@@ -32,6 +32,7 @@ class ReportsService implements IReportsService
         return $this->reportsRepo->showOrderDetailsRepo($id);
     }
 
+
     public function getNumProductService(ProductNumReportsDto $dto): string
     {
         $data            = [];

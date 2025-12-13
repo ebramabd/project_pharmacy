@@ -19,11 +19,11 @@ class ReportsRepo implements IReportsRepo
 
     public function BranchesOrdersReportsRepo(array $data): Collection
     {
-        $period    = $data['period'] ;
-        $startDate = Carbon::now()->subDays($period) ;
-        $endDate   = Carbon::now() ;
+        $period    = $data['period'];
+        $startDate = Carbon::now()->subDays($period);
+        $endDate   = Carbon::now();
 
-        return $data = DB::table('order')
+        return DB::table('order')
             ->join('users', 'order.admin_id', '=', 'users.id')
             ->where('order.branch_id', $data['branch'])
             ->whereBetween('order.created_at', [$startDate , $endDate])
@@ -50,9 +50,9 @@ class ReportsRepo implements IReportsRepo
     {
         $period    = $data['period'] ;
         $startDate = Carbon::now()->subDays($period) ;
-        $endDate   = Carbon::now() ;
+        $endDate   = Carbon::now();
 
-        return $data = DB::table('order')
+        return DB::table('order')
             ->join('order_details', 'order.id', '=', 'order_details.order_id')
 
             ->where('order.branch_id', $data['branch'])
