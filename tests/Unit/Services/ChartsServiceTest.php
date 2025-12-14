@@ -19,8 +19,8 @@ class ChartsServiceTest extends TestCase
         );
     }
 
-    /** @test */
-    public function it_returns_branch_chart_data(): void
+
+    public function testItReturnsBranchChartData(): void
     {
         $result = $this->chartsService->getChartBranchService();
 
@@ -43,8 +43,8 @@ class ChartsServiceTest extends TestCase
         );
     }
 
-    /** @test */
-    public function it_returns_product_chart_data(): void
+
+    public function testItReturnsProductChartData(): void
     {
         $result = $this->chartsService->getChartProductService();
 

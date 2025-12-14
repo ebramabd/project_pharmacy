@@ -149,4 +149,28 @@ trait Collections
             ]
         ]);
     }
+
+    public function storeCollection(): Collection
+    {
+        return collect([
+            (object)[
+                'id'=>1 ,
+                'prod_id' => 1,
+                'branch_id' => 1,
+                'max_quantity' =>50,
+                'min_quantity' => 25,
+                'quantity_item' => 20,
+                'price' =>22.5,
+            ],
+            (object)[
+                'id'=>2 ,
+                'prod_id' => 2,
+                'branch_id' => 2,
+                'max_quantity' =>50,
+                'min_quantity' => 25,
+                'quantity_item' => 20,
+                'price' =>22.5,
+            ]
+        ]);
+    }
 }
