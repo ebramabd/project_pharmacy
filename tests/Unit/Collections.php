@@ -173,4 +173,20 @@ trait Collections
             ]
         ]);
     }
+
+    public function requestOfProductCollection(): Collection
+    {
+        return collect([
+            (object)[
+                'branch_id' => 1,
+                'prod_id' => 1,
+                'quantity_of_prod' => 30,
+            ],
+            (object)[
+                'branch_id' => 2,
+                'prod_id' => 2,
+                'quantity_of_prod' => 30,
+            ],
+        ]);
+    }
 }

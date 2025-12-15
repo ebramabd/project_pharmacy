@@ -14,7 +14,7 @@ class CreateRequestRepo implements ICreateRequestRepo
 
     public function getProductFromBranchRepo(): Collection
     {
-        $branch_id = auth()->user()->branch_id ;
+        $branch_id = auth()->user()->branch_id;
         return DB::table('stores')
             ->join('products', 'stores.prod_id', '=', 'products.id')
             ->where('stores.branch_id', $branch_id)
@@ -23,12 +23,12 @@ class CreateRequestRepo implements ICreateRequestRepo
 
     public function addRequestRepo(array $data): void
     {
-        $this->save(new Requests_of_product(), $data) ;
+        $this->save(new Requests_of_product(), $data);
     }
 
     public function updateStoreRepo(array $data): void
     {
-        $branch_id = auth()->user()->branch_id ;
+        $branch_id = auth()->user()->branch_id;
         DB::table('stores')
             ->where('branch_id', $branch_id)
             ->where('prod_id', $data['prod_id'])
