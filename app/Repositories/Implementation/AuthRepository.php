@@ -3,18 +3,14 @@
 namespace App\Repositories\Implementation;
 
 use App\Models\Admin;
+use App\Repositories\IAuthRepo;
 use App\Trait\Crud;
 use Illuminate\Support\Facades\Hash;
 
-class AuthRepository
+class AuthRepository implements IAuthRepo
 {
     use Crud ;
 
-    public function loginRepoWeb($name)
-    {
-        $dataName = ['user_name' => $name] ;
-        return $this->getOneObject(new Admin(), $dataName);
-    }
 
     public function register($data)
     {
@@ -49,9 +45,5 @@ class AuthRepository
         ]);
     }
 
-    public function makeOrder()
-    {
-
-    }
 
 }

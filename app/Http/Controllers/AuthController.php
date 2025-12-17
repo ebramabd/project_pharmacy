@@ -6,6 +6,7 @@ use App\Http\Requests\Admin\AuthRequest;
 use App\Http\Requests\Client\ClientOrderRequest;
 use App\Services\Implementation\AuthService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
@@ -40,7 +41,10 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        return $this->authService->register($request) ;
+        return $this->authService->register((object)[
+            'user_name' => $request->user_name,
+            'password' => Hash::make($request->password),
+        ]);
     }
 
     public function login(Request $request)
@@ -61,7 +65,7 @@ class AuthController extends Controller
 
     public function order(ClientOrderRequest $request)
     {
-        return $request;
+//        return $request;
         return auth()->user()->id ;
     }
 }
