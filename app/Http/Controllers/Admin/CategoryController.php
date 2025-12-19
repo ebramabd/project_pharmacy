@@ -19,7 +19,6 @@ class CategoryController
 
     public function save(CategoryRequest $request, int $id = null)
     {
-        $statue   = '' ;
         $category = $this->categoryService->categorySave($request->getDto(), $id) ;
         if ($category == false) {
             return redirect()->route('branch.show')->with(['error' => 'this branch exist']);
