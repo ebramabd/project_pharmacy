@@ -2,7 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
@@ -13,8 +14,9 @@ use Laravel\Sanctum\HasApiTokens;
  * @property string $type
  * @property int $branch_id
  */
-class Admin extends Model
+class Admin extends Authenticatable
 {
+    use HasFactory;
     use HasApiTokens;
     use Notifiable ;
     protected $table    = 'users';
