@@ -1,8 +1,9 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Admin;
 
 use App\Models\Branch;
+use Tests\Feature\Models;
 use Tests\TestCase;
 
 class BranchFeatureTest extends TestCase

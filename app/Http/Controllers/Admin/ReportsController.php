@@ -49,6 +49,7 @@ class ReportsController extends Controller
         $product = $this->reportsService->getNumProductService($request->getDto()) ;
         return redirect()->route('search-product')->with(['success' => 'this all product '.$product.' successful']);
     }
+
     public function showAllOrderOfBranch()
     {
         $branchOrders = $this->reportsService->showAllOrderOfBranchService();

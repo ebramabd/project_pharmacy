@@ -19,6 +19,9 @@ class BranchRequestController
 
     public function acceptRequestBranch(BranchRequestRequest $request)
     {
-        $this->branchRequestService->acceptRequestBranch($request->getDto()) ;
+        $this->branchRequestService->acceptRequestBranch($request->getDto());
+        return redirect()
+            ->route('show-request')
+            ->with('success', 'Request accepted successfully');
     }
 }

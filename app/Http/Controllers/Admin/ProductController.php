@@ -21,7 +21,7 @@ class ProductController
     public function getViewProduct($id = null)
     {
         $data               = [];
-        $data['categories'] = $this->categoryService->ShowAllServ();
+        $data['categories'] = $this->categoryService->allCategoryPage();
         $dataWhere          = ['id' => $id] ;
         $data['products']   = $this->productService->getOneSer($dataWhere) ;
         return view('admin.product.create', $data) ;
@@ -30,7 +30,7 @@ class ProductController
     public function saveProduct(ProductRequest $request, $id = null)
     {
         $statue   = '' ;
-        $products = $this->productService->saveServ($request->getDto(), $id) ;
+        $this->productService->saveServ($request->getDto(), $id) ;
         if ($id != null) {
             $statue .= 'update' ;
             return redirect()->route('product.show')->with(['error' => 'this branch '.$statue.' successful']);
@@ -48,6 +48,5 @@ class ProductController
         } else {
             return redirect()->route('product.show')->with(['success' => 'this category deleted successful']);
         }
-
     }
 }
