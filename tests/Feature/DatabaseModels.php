@@ -7,7 +7,7 @@ use App\Models\Admin;
 use App\Models\Branch;
 use Illuminate\Support\Collection;
 
-trait Models
+trait DatabaseModels
 {
 
     /**

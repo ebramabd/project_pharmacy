@@ -21,7 +21,7 @@ class StoreController extends Controller
         return view('admin.store.show', compact('stores')) ;
     }
 
-    public function getViewSave($id = null)
+    public function getViewSave()
     {
         $branches = $this->branchService->getAllBranches();
         return view('admin.store.create', compact('branches')) ;

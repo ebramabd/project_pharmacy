@@ -20,7 +20,7 @@ class UserController
     public function getViewSave(int $id = null)
     {
         $data             = [];
-        $data['branches'] = $this->crudBranchServ->ShowAllServ();
+        $data['branches'] = $this->crudBranchServ->getAllBranches();
         $data['users']    = $this->userService->getOneService($id) ;
 
         return view('admin.user.create', $data) ;
@@ -29,7 +29,7 @@ class UserController
     public function save(UserRequest $request, $id = null)
     {
         $statue = '' ;
-        $user   = $this->userService->saveService($request->getDto(), $id) ;
+        $this->userService->saveService($request->getDto(), $id) ;
         if ($id != null) {
             $statue .= 'update' ;
             return redirect()->route('user.show')->with(['success' => 'this user '.$statue.' successful']);

@@ -8,7 +8,7 @@ use Illuminate\Support\Collection;
 interface IStoreRepo
 {
     //    public function getAllRepo():\Illuminate\Support\Collection;
-    public function saveRepo(array $data, int $id = null): void ;
+    public function saveRepo(array $data, int $id = null): Store ;
     public function getNameProductBranchRepo(): Collection ;
     public function getOneRepo(array $data = []): Store;
 }

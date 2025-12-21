@@ -15,18 +15,13 @@ class StoreService implements IStoreService
     {
     }
 
-    public function saveServ(StoreDto $dto, $id = null): void
+    public function saveServ(StoreDto $dto, $id = null): Store
     {
         $data['branch_id'] =  $dto->getBranchId() ;
 
         $dataWhere   = ['branch_id' => $dto->getBranchId() ] ;
-        $branchExist = $this->storeRepo->getOneRepo($dataWhere);
-//        if (!empty($branchExist)) {
-//            throw ValidationException::withMessages([
-//                'username' => 'not found user name',
-//            ]);
-//        }
-        $this->storeRepo->saveRepo($data);
+        $this->storeRepo->getOneRepo($dataWhere);
+        return $this->storeRepo->saveRepo($data);
     }
 
     public function getOneServ(array $data = []): Store

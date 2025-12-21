@@ -39,7 +39,7 @@ class ReportsController extends Controller
     public function searchProductNum()
     {
         $data             = [] ;
-        $data['branches'] = $this->branchService->ShowAllServ() ;
+        $data['branches'] = $this->branchService->getAllBranches() ;
         $data['products'] = $this->productService->ShowAllServ() ;
         return view('admin.reports.product.searchProductNum', $data);
     }

@@ -6,12 +6,12 @@ use App\Http\Requests\Admin\BranchRequest;
 use App\Models\Requests_of_product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Tests\Feature\Models;
+use Tests\Feature\DatabaseModels;
 use Tests\TestCase;
 
 class BranchRequestFeatureTest extends TestCase
 {
-    use Models;
+    use DatabaseModels;
 
     public function test_guest_cannot_access_show_all_request_page()
     {

@@ -4,12 +4,12 @@ namespace Tests\Feature\Admin;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Tests\Feature\Models;
+use Tests\Feature\DatabaseModels;
 use Tests\TestCase;
 
 class ChartsFeatureTest extends TestCase
 {
-    use Models;
+    use DatabaseModels;
 
     public function test_admin_can_view_branch_chart_page()
     {

@@ -27,12 +27,12 @@ class StoreRepo implements IStoreRepo
         }return $store ;
     }
 
-    public function saveRepo($data, $id = null): void
+    public function saveRepo($data, $id = null): Store
     {
-
+        $store = new Store() ;
         $products = $this->getAllObject(new Product());
         foreach ($products as $product) {
-            $store = new Store() ;
+
             $store->create([
                 'prod_id'       => $product->id,
                 'branch_id'     => $data['branch_id'],
@@ -42,6 +42,7 @@ class StoreRepo implements IStoreRepo
                 'price'         => 0.00,
             ]);
         }
+        return $store;
     }
 
     public function getNameProductBranchRepo(): Collection

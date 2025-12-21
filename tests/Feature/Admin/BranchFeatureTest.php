@@ -3,12 +3,12 @@
 namespace Tests\Feature\Admin;
 
 use App\Models\Branch;
-use Tests\Feature\Models;
+use Tests\Feature\DatabaseModels;
 use Tests\TestCase;
 
 class BranchFeatureTest extends TestCase
 {
-    use Models;
+    use DatabaseModels;
 
     public function test_admin_can_view_all_branches_page()
     {
