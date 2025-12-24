@@ -2,11 +2,13 @@
 
 namespace App\Providers;
 
+use App\Repositories\IAuthRepo;
 use App\Repositories\IBranchRepo;
 use App\Repositories\IBranchRequestRepo;
 use App\Repositories\ICategoryRepo;
 use App\Repositories\IChartsRepo;
 use App\Repositories\ICreateRequestRepo;
+use App\Repositories\Implementation\AuthRepository;
 use App\Repositories\Implementation\BranchRepo;
 use App\Repositories\Implementation\BranchRequestRepo;
 use App\Repositories\Implementation\CategoryRepo;
@@ -22,11 +24,13 @@ use App\Repositories\IProductRepo;
 use App\Repositories\IReportsRepo;
 use App\Repositories\IStoreRepo;
 use App\Repositories\IUserRepo;
+use App\Services\IAuthService;
 use App\Services\IBranchRequestService;
 use App\Services\IBranchService;
 use App\Services\ICategoryService;
 use App\Services\IChartsService;
 use App\Services\ICreateRequestService;
+use App\Services\Implementation\AuthService;
 use App\Services\Implementation\BranchRequestService;
 use App\Services\Implementation\BranchService;
 use App\Services\Implementation\CategoryService;
@@ -89,5 +93,8 @@ class AppServiceProvider extends ServiceProvider
         //accept request
         $this->app->bind(IBranchRequestService::class, BranchRequestService::class);
         $this->app->bind(IBranchRequestRepo::class, BranchRequestRepo::class);
+          //accept request
+        $this->app->bind(IAuthService::class, AuthService::class);
+        $this->app->bind(IAuthRepo::class, AuthRepository::class);
     }
 }

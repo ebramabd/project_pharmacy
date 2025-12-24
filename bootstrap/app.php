@@ -31,7 +31,7 @@ return Application::configure(basePath: dirname(__DIR__))
                 ->group(base_path('routes/admin_branch.php'));
 
             Route::middleware('api')
-//                ->prefix('api')
+                ->prefix('api')
                 ->name('api.')
                 ->group(base_path('routes/api.php'));
 

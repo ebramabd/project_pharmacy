@@ -9,9 +9,6 @@ use Illuminate\Support\Collection;
 
 interface ICategoryService
 {
-    /**
-     * @return  \Illuminate\Support\Collection<int , Category>
-    */
     public function allCategoryPage(): Collection; //ShowAllServ
     public function categorySave(CategoryDto $dto, int $id = null): Category; //saveServ
     public function getOneCategory(array $data = []): Category;//getOneSer

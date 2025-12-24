@@ -12,9 +12,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('get-details-product/{prod_id}', [CreateRequestController::class, 'getDetailsProducts'])->name('getDetailsProducts');
         Route::post('add-request', [CreateRequestController::class, 'addRequest'])->name('addRequest');
         Route::post('update-store', [CreateRequestController::class, 'updateStore'])->name('update-store');
-
         Route::get('get-product-with-branch', [CreateRequestController::class, 'getProductsWithBranch'])->name('getProductsWithBranch');
-
     });
 
     Route::get('index', [Admin_branch::class, 'afterLogin'])->name('afterLogin');

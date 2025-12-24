@@ -30,7 +30,7 @@ class OrderRepoStubTest implements IOrderRepo
             });
     }
 
-    public function storeRepo(array $data): string
+    public function storeRepo(array $data, int $branchId = null): string
     {
         $branch_id = 1;
         foreach ($data as $order) {
@@ -59,19 +59,21 @@ class OrderRepoStubTest implements IOrderRepo
         return 'تمام يا ريس تعبناك معانا ';
     }
 
-    public function storeOrder(int $admin_id, string $price, int $branch_id): Order
+    public function storeOrder(int $admin_id = null, string $price, int $branch_id, int $client_id = null): Order
     {
         $order = $this->orderCollectionTrait();
         $order->push([
             'admin_id'  => $admin_id ,
             'branch_id' => $branch_id ,
             'price'     => $price,
+            'client_id'     => $client_id,
         ]) ;
 
         return new Order([
             'admin_id'  => $admin_id ,
             'branch_id' => $branch_id ,
             'price'     => $price,
+            'client_id'     => $client_id,
         ]);
     }
 }

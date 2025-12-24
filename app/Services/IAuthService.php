@@ -2,10 +2,13 @@
 
 namespace App\Services;
 
-use App\Dtos\AuthDto;
-
 interface IAuthService
 {
-    public function register($request) ;
-    public function loginSer($request) ;
+    public function registerApi(string $userName, string $password): array;
+
+    public function registerWeb(string $userName, string $password): bool;
+
+    public function loginWeb(string $userName, string $password): bool;
+
+    public function loginApi(string $userName, string $password): array|false;
 }

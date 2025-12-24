@@ -31,18 +31,32 @@ class OrderRepo implements IOrderRepo
             ]);
     }
 
-    public function storeRepo(array $data): string
+    public function storeRepo(array $data, int $branchId = null): string
     {
-        $branch_id = auth()->user()->branch_id ;
+        $admin = null;
+        $client = null;
+
+        $user = auth()->user();
+        $branch_id = $branchId;
+
+        if ($user->type === 'admin_panel' || $user->type === 'admin') {
+            $branch_id = $user->branch_id ;
+            $admin = $user->id;
+        }
+
+        if ($user->type === 'user'){
+            $client = $user->id;
+        }
+
         foreach ($data as $order) {
             $product_id = $order['product_id'] ;
             $store      = Store::where('prod_id', $product_id)->where('branch_id', $branch_id)->first();
             Store::where('prod_id', $product_id)->where('branch_id', $branch_id)->decrement('quantity_item', $order['quantity']) ;
-            $priceProduct        = $store->price ;
+            $priceProduct        = $store->price;
             $totalPriceProduct[] = $priceProduct * $order['quantity'];
         }
         $totalPriceOrder = array_sum($totalPriceProduct) ;
-        $newOrder        =  $this->storeOrder(auth()->user()->id, $totalPriceOrder, $branch_id) ;
+        $newOrder        =  $this->storeOrder($admin, $totalPriceOrder, $branch_id, $client) ;
 
         foreach ($data as $order) {
             Order_details::create([
@@ -54,13 +68,14 @@ class OrderRepo implements IOrderRepo
         return 'تمام يا ريس تعبناك معانا ' ;
     }
 
-    public function storeOrder(int $admin_id, string $price, int $branch_id): Order
+    public function storeOrder(int $admin_id = null, string $price, int $branch_id, int $clientId = null): Order
     {
         $order = new Order();
         return $order->create([
             'admin_id'  => $admin_id ,
             'branch_id' => $branch_id ,
             'price'     => $price,
+            'client_id'     => $clientId,
         ]) ;
     }
 }

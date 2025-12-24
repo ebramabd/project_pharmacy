@@ -1,60 +1,43 @@
 <?php
-
 namespace Tests\Unit\Stubs;
 
 use App\Repositories\IAuthRepo;
-use Illuminate\Support\Collection;
+use App\Models\Admin;
 
 class AuthRepoStub implements IAuthRepo
 {
-    private Collection $users;
+    private array $users = [];
 
     public function __construct()
     {
-        $this->users = collect([
-            (object)[
-                'id' => 1,
-                'user_name' => 'admin',
-                'password' => 'hashed_password',
-            ],
+        $this->users[] = new Admin([
+            'id' => 1,
+            'user_name' => 'admin',
+            'password' => bcrypt('password'),
         ]);
     }
 
-    public function register($data)
+    public function create(array $data): Admin
     {
-        $exists = $this->users->firstWhere('user_name', $data['user_name']);
-
-        if ($exists) {
-            return 'user name must be unique';
-        }
-
-        $user = (object)[
-            'id' => $this->users->count() + 1,
-            'user_name' => $data['user_name'],
-            'password' => $data['password'],
-        ];
-
-        $this->users->push($user);
-
+        $user = new Admin($data);
+        $user->id = count($this->users) + 1;
+        $this->users[] = $user;
         return $user;
     }
 
-    public function loginRepo($data)
+    public function findByUserName(string $userName): ?Admin
     {
-        $user = $this->users->firstWhere('user_name', $data['user_name']);
-
-        if (!$user) {
-            return null;
+        foreach ($this->users as $user) {
+            if ($user->user_name === $userName) {
+                return $user;
+            }
         }
-
-        return [
-            'token' => 'fake-token',
-            'user'  => $user,
-        ];
+        return null;
     }
 
-    public function all(): Collection
+    // helper for testing
+    public function count(): int
     {
-        return $this->users;
+        return count($this->users);
     }
 }

@@ -2,17 +2,9 @@
 
 namespace App\Http\Controllers\AdminBranches;
 
-use App\Services\Implementation\CategoryService;
-use App\Services\Implementation\CreateRequestService;
 
 class Admin_branch
 {
-    public function __construct(
-        private CategoryService $crudCategoriesServ,
-        private CreateRequestService $adminBranchSer
-    ) {
-    }
-
     public function afterLogin()
     {
         if (auth()->user()->type == 'admin_branch') {

@@ -2,33 +2,77 @@
 
 namespace App\Services\Implementation;
 
-use App\Dtos\AuthDto;
 use App\Repositories\IAuthRepo;
-use App\Repositories\Implementation\AuthRepository;
 use App\Services\IAuthService;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
 class AuthService implements IAuthService
 {
+    public function __construct(private IAuthRepo $authRepo) {}
 
-
-    public function __construct(private IAuthRepo $authRepository)
+    public function registerWeb(string $userName, string $password): bool
     {
+        if ($this->authRepo->findByUserName($userName)) {
+            throw ValidationException::withMessages([
+                'user_name' => 'User name already exists'
+            ]);
+        }
+
+        $user = $this->authRepo->create([
+            'user_name' => $userName,
+            'password' => Hash::make($password),
+            'type' => 'user',
+            'branch_id' => null,
+        ]);
+
+        Auth::login($user);
+
+        return true;
     }
 
-   public function register($request)
+    public function loginWeb(string $userName, string $password): bool
     {
-        return $this->authRepository->register([
-            'user_name' => $request->user_name,
-            'password'  => $request->password, // already hashed
+        return Auth::attempt([
+            'user_name' => $userName,
+            'password' => $password,
         ]);
     }
 
-
-    public function loginSer($request)
+    public function registerApi(string $userName, string $password): array
     {
-        return $this->authRepository->loginRepo($request);
+        if ($this->authRepo->findByUserName($userName)) {
+            throw ValidationException::withMessages([
+                'user_name' => 'User name already exists'
+            ]);
+        }
+
+        $user = $this->authRepo->create([
+            'user_name' => $userName,
+            'password'  => Hash::make($password),
+            'type'      => 'user',
+            'branch_id' => null,
+        ]);
+
+        return [
+            'token' => $user->createToken('api')->plainTextToken,
+            'user'  => $user,
+        ];
     }
 
+    public function loginApi(string $userName, string $password): array|false
+    {
+        $user = $this->authRepo->findByUserName($userName);
+
+        if (!$user || !Hash::check($password, $user->password)) {
+            return false;
+        }
+
+        $token = $user->createToken('api')->plainTextToken;
+        return [
+            'token' => $token,
+            'user' => $user,
+        ];
+    }
 }

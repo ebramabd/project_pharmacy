@@ -2,9 +2,13 @@
 
 namespace Tests\Unit\Services;
 
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 use App\Services\Implementation\AuthService;
 use Tests\Unit\Stubs\AuthRepoStub;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
+
 
 class AuthServiceTest extends TestCase
 {
@@ -20,40 +24,25 @@ class AuthServiceTest extends TestCase
     }
 
 
-   public function testRegisterCreatesUser()
+    public function test_register_web_creates_user()
     {
+        Auth::shouldReceive('login')->once();
+
         $repo = new AuthRepoStub();
         $service = new AuthService($repo);
 
-        $result = $service->register((object)[
-            'user_name' => 'new_user',
-            'password'  => 'hashed_pass',
-        ]);
+        $result = $service->registerWeb('new_user', '123456');
 
-        $this->assertEquals('new_user', $result->user_name);
-        $this->assertCount(2, $repo->all());
+        $this->assertTrue($result);
     }
 
-
-    public function testRegisterFailsWhenUsernameExists()
+    public function test_register_web_fails_when_username_exists()
     {
-        $result = $this->service->register((object)[
-            'user_name' => 'admin',
-            'password' => '123456',
-        ]);
+        $this->expectException(ValidationException::class);
 
-        $this->assertEquals('user name must be unique', $result);
-    }
+        $repo = new AuthRepoStub();
+        $service = new AuthService($repo);
 
-
-    public function testLoginReturnsTokenAndUser()
-    {
-        $result = $this->service->loginSer([
-            'user_name' => 'admin',
-            'password' => 'any',
-        ]);
-
-        $this->assertEquals('fake-token', $result['token']);
-        $this->assertEquals('admin', $result['user']->user_name);
+        $service->registerWeb('admin', '123456');
     }
 }

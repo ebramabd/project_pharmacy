@@ -13,9 +13,9 @@ class CreateRequestController
     {
     }
 
-    public function getCategories() //return All categories with id categories
+    public function getCategories()
     {
-        $categories = $this->categoriesService->ShowAllServ();
+        $categories = $this->categoriesService->allCategoryPage();
         return view('adminBranches.showAllCategories', compact('categories'));
     }
 

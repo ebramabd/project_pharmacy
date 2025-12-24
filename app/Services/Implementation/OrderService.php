@@ -22,11 +22,12 @@ class OrderService implements IOrderService
     {
         $products   =  $dto->getOptions() ;
         $quantities =  $dto->getQuantity();
+        $branchId   =  $dto->getBranchId();
 
         $dataOrder = array_map(function ($product, $quantity) {
             return ['product_id' => $product, 'quantity' => $quantity];
         }, $products, $quantities);
 
-        return $this->orderRepo->storeRepo($dataOrder) ;
+        return $this->orderRepo->storeRepo($dataOrder , $branchId) ;
     }
 }

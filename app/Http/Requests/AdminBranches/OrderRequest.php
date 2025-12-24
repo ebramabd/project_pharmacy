@@ -25,6 +25,7 @@ class OrderRequest extends FormRequest
         return [
             'options'  => 'required',
             'quantity' => 'required',
+            'branch_id' => 'nullable',
         ];
     }
 
@@ -32,7 +33,9 @@ class OrderRequest extends FormRequest
     {
         $dto = new OrderDto() ;
         $dto->setOptions((array) $this->input('options'))
-        ->setQuantity((array) $this->input('quantity'));
+        ->setQuantity((array) $this->input('quantity'))
+        ->setBranchId($this->input('branch_id'))
+        ;
         return $dto;
     }
 
